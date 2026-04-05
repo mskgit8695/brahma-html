@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="./job-portal_files/fontawesome-all.min.css">
     <link rel="stylesheet" href="./job-portal_files/themify-icons.css">
     <link rel="stylesheet" href="./job-portal_files/slick.css">
-    <link rel="stylesheet" href="./job-portal_files/nice-select.css">
+    <!-- <link rel="stylesheet" href="./job-portal_files/nice-select.css"> -->
     <link rel="stylesheet" href="./job-portal_files/style.css">
 
 
@@ -36,8 +36,9 @@
             background: #f5f7fa;
             font-family: Arial, sans-serif;
         }
+
         html {
-        scroll-behavior: smooth;
+            scroll-behavior: smooth;
         }
 
         .profile-card {
@@ -91,6 +92,10 @@
         }
 
         .section-title svg {
+            fill: #2d66cf;
+            cursor: pointer;
+        }
+       h6 svg {
             fill: #2d66cf;
             cursor: pointer;
         }
@@ -150,14 +155,100 @@
             color: #393939;
             transition: all 0.5s ease-in-out;
         }
-        .quickLink:hover{
+
+        .quickLink:hover {
             color: #000;
             transition: all 0.2s ease-in-out;
         }
-        .scrollSec{
+
+        .scrollSec {
             scroll-margin-top: 100px;
         }
+
+        .numbersOfUpdate {
+            position: absolute;
+            top: 20px;
+            right: 15px;
+            width: 15px;
+            height: 15px;
+            border-radius: 100%;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: red;
+            color: #fff;
+        }
+
+        .form-control {
+            border: 1px solid #e5e6e9;
+            border-radius: 0px;
+            height: 48px;
+            padding-left: 18px;
+            font-size: 13px;
+            background: transparent;
+        }
+
+        .modal-dialog {
+            max-width: 50%;
+        }
+
+        .modal-content {
+            border-radius: 25px;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            border-radius: 50px;
+            background-color: #fff;
+            border: solid 1px #666;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .chip.active {
+            background-color: #28395a;
+            border: solid 1px #28395a;
+            color: #fff;
+            cursor: default;
+        }
+
+        .chip.active svg {
+            fill: #fff;
+        }
+
+        .chip svg {
+            width: 12px;
+            height: 12px;
+            opacity: 0.5;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+        .chip.active svg:hover {
+            opacity: 1;
+        }
+
+        .boxed-btn {
+            padding: 15px 44px;
+            height: 54px;
+        }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-modal-id]').click(function () {
+                let modalId = $(this).data('modal-id');
+                $('#' + modalId).modal('show');
+            });
+        });
+    </script>
 </head>
 
 <body style="overflow: visible;">
@@ -195,8 +286,30 @@
                                             <li><a
                                                     href="https://themewagon.github.io/jobfinderportal/index.html">Home</a>
                                             </li>
-                                            <li><a href="https://themewagon.github.io/jobfinderportal/job_listing.html">Find
-                                                    a Jobs </a></li>
+                                            <li><a href="#" style="position: relative;">Find
+                                                    a Jobs
+                                                    <span class="numbersOfUpdate">2</span>
+                                                </a>
+
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a href="#">Recommended Jobs <span
+                                                                style="font-size: 10px; color:red; display: inline-block;">25
+                                                                New</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Application Status <span
+                                                                style="font-size: 10px; color:red; display: inline-block;">10
+                                                                Updates</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Saved Jobs</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Recent Update Jobs</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
                                             <li><a
                                                     href="https://themewagon.github.io/jobfinderportal/about.html">About</a>
                                             </li>
@@ -315,7 +428,8 @@
                                         <h4 class="mb-1 text-center text-md-left">
                                             David Jhon Warner
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                                class="editIcon" viewBox="0 0 512 512">
+                                                class="editIcon" data-toggle="modal" data-target="#basic_detail"
+                                                viewBox="0 0 512 512">
                                                 <path
                                                     d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
                                             </svg>
@@ -323,7 +437,7 @@
                                         <div class="text-center text-md-left">
                                             <small class="text-muted">Front-end developer</small>
                                         </div>
-                                        
+
                                     </div>
                                     <div class="col-md-4 text-center text-md-right">
                                         <button class="btn">Download CV</button>
@@ -394,11 +508,11 @@
                 <div class="col-md-3 d-none d-md-block">
                     <div class="card-box shadow-sm">
                         <h5 class="section-title">Quick Links</h5>
-                        <a href="#about_me" class="quickLink" >About me</a>
+                        <a href="#about_me" class="quickLink">About me</a>
                         <a href="#education" class="quickLink">Education </a>
                         <a href="#workExp" class="quickLink">Work Experience</a>
                         <a href="#skills" class="quickLink">Skills </a>
-                        <a href="#about_me" class="quickLink" >About me</a>
+                        <a href="#about_me" class="quickLink">About me</a>
                         <a href="#education" class="quickLink">Education </a>
                         <a href="#workExp" class="quickLink">Work Experience</a>
                         <a href="#skills" class="quickLink">Skills </a>
@@ -409,8 +523,8 @@
                 <div class="col-md-9">
 
                     <div class="card-box shadow-sm scrollSec" id="about_me">
-                        <h5 class="section-title" >Learn About Me
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512">
+                        <h5 class="section-title">Learn About Me
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512" data-toggle="modal" data-target="#personal_detail">
                                 <path
                                     d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
                             </svg>
@@ -530,16 +644,18 @@
 
                     <!-- Education -->
                     <div class="card-box shadow-sm education scrollSec" id="education">
-                        <h5 class="section-title">Education
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512">
-                                <path
-                                    d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
-                            </svg>
+                        <h5 class="section-title d-flex justify-content-between">Education
+                            <span class="text-primary font-bold h6 cursor-pointer" data-toggle="modal" data-target="#add_education">Add Education</span>
                         </h5>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <h6>BSC In Engineering (1995-1999)</h6>
+                                <h6>BSC In Engineering (1995-1999)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512" data-toggle="modal" data-target="#add_education">
+                                <path
+                                    d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
+                            </svg>
+                                </h6>
                                 <small>Oxford University</small>
                             </div>
 
@@ -562,31 +678,44 @@
 
                     <!-- Experience -->
                     <div class="card-box shadow-sm workExp scrollSec" id="workExp">
-                        <h5 class="section-title">Work Experience
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512">
-                                <path
-                                    d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
-                            </svg>
-                        </h5>
+                        <h5 class="section-title d-flex justify-content-between">Work Experience <span class="text-primary font-bold h6 cursor-pointer" data-toggle="modal" data-target="#add_work_exp">Add experience</span></h5>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <h6>Senior IT Consultant</h6>
+                                <h6>Senior IT Consultant <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512" data-toggle="modal" data-target="#add_work_exp">
+                                <path
+                                    d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
+                            </svg></h6>
                                 <small>Print Design LTD (2005-2010)</small>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <h6>Senior Web Developer</h6>
+                                <h6>Senior Web Developer
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512" data-toggle="modal" data-target="#add_work_exp">
+                                <path
+                                    d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
+                            </svg>
+                                </h6>
                                 <small>Fashion Stock (2000-2005)</small>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <h6>Graphics Designer</h6>
+                                <h6>Graphics Designer
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512" data-toggle="modal" data-target="#add_work_exp">
+                                <path
+                                    d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
+                            </svg>
+                                </h6>
                                 <small>Pixel Building (2010-2012)</small>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <h6>Support Engineer</h6>
+                                <h6>Support Engineer
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 512 512" data-toggle="modal" data-target="#add_work_exp">
+                                <path
+                                    d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
+                            </svg>
+                                </h6>
                                 <small>Media Boss LTD (2000-2005)</small>
                             </div>
                         </div>
@@ -596,7 +725,8 @@
                     <!-- skills -->
                     <div class="card-box shadow-sm workExp scrollSec" id="skills">
                         <h5 class="section-title">Skills
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512"
+                                data-toggle="modal" data-target="#tech_skills">
                                 <path
                                     d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152L0 424c0 48.6 39.4 88 88 88l272 0c48.6 0 88-39.4 88-88l0-112c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 112c0 22.1-17.9 40-40 40L88 464c-22.1 0-40-17.9-40-40l0-272c0-22.1 17.9-40 40-40l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L88 64z" />
                             </svg>
@@ -634,6 +764,7 @@
                             </div>
                         </div>
                     </div>
+                    
 
                 </div>
             </div>
@@ -795,6 +926,842 @@
         <!-- Footer End-->
     </footer>
 
+
+
+    <!-- Modal basic detail -->
+    <div class="modal fade" id="basic_detail">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Basic Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="user_name">Name</label>
+                            <input type="text" class="form-control" id="" value="David Jhon Warner">
+                        </div>
+                        <div class="form-group">
+                            <label for="work_status" class="mb-0">Work status</label>
+                            <small id="work_status" class="form-text text-muted mt-0">We will personalise your Naukri
+                                experience based on this</small>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="fresher" name="work_status"
+                                            required>
+                                        <label class="custom-control-label" for="fresher">Fresher</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="custom-control custom-radio mb-3">
+                                        <input type="radio" class="custom-control-input" id="experienced"
+                                            name="work_status" checked required>
+                                        <label class="custom-control-label" for="experienced">Experienced</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_experience">Total experience</label>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <select id="" class="form-control">
+                                        <option selected>Select year</option>
+                                        <option>0 Year</option>
+                                        <option>1 Year</option>
+                                        <option>2 Years</option>
+                                        <option>3 Years</option>
+                                        <option>4 Years</option>
+                                        <option>5 Years</option>
+                                        <option>0 Year</option>
+                                        <option>1 Year</option>
+                                        <option>2 Years</option>
+                                        <option>3 Years</option>
+                                        <option>4 Years</option>
+                                        <option>5 Years</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select id="" class="form-control">
+                                        <option selected>Select month</option>
+                                        <option>0 month</option>
+                                        <option>1 month</option>
+                                        <option>2 months</option>
+                                        <option>3 months</option>
+                                        <option>4 months</option>
+                                        <option>5 months</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-0">Current salary</label>
+                            <small class="form-text text-muted mt-0 mb-1">Salary information helps us find relevant jobs
+                                for you</small>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <select id="" class="form-control outline">
+                                        <option selected>₹</option>
+                                        <option>$</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="form-control" id="" value="" placeholder="Eg. 4,50,000">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="work_status" class="mb-0">Current location</label>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="india"
+                                            name="current_location" checked required>
+                                        <label class="custom-control-label" for="india">Fresher</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="custom-control custom-radio mb-3">
+                                        <input type="radio" class="custom-control-input" id="out_of_india"
+                                            name="current_location" required>
+                                        <label class="custom-control-label" for="out_of_india">Out of India</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="" value=""
+                                placeholder="Enter your current city">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-0">Mobile number</label>
+                            <small class="form-text text-muted mt-0 mb-1">Recruiters will contact you on this
+                                number</small>
+                            <small class="form-text text-muted mt-0 mb-1">7503168630 <span
+                                    class="font-weight-bold text-primary cursor-pointer">Change Mobile
+                                    Number</span></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-0">Email Address</label>
+                            <small class="form-text text-muted mt-0 mb-1">We will send relevant jobs and updates to this
+                                email</small>
+                            <small class="form-text text-muted mt-0 mb-1">abctest@gmail.com <span
+                                    class="font-weight-bold text-primary cursor-pointer">Change Email</span></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Availability to join</label>
+                            <div>
+                                <span class="chip text-white" style="background-color: #28395a;">15 Day or less</span>
+                                <span class="chip bg-default cursor-pointer">1 Month</span>
+                                <span class="chip bg-default cursor-pointer">2 Months</span>
+                                <span class="chip bg-default cursor-pointer">3 Months</span>
+                                <span class="chip bg-default cursor-pointer">More than 3 Months</span>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="button button-contactForm boxed-btn"
+                                data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- Modal education -->
+    <div class="modal fade" id="personal_detail">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">personal Detail</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+
+
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="gen_male" name="gender_type" checked="" required="">
+                                        <label class="custom-control-label" for="gen_male">Male</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="gen_female" name="gender_type" required="">
+                                        <label class="custom-control-label" for="gen_female">Female</label>
+                                    </div>
+                                </div>
+                                 <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="gen_other" name="gender_type" required="">
+                                        <label class="custom-control-label" for="gen_other">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Marital Status</label>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="single" name="marital_status" checked="" required="">
+                                        <label class="custom-control-label" for="single">Single</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="married" name="marital_status" required="">
+                                        <label class="custom-control-label" for="married">Married</label>
+                                    </div>
+                                </div>
+                                 <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="widowed" name="marital_status" required="">
+                                        <label class="custom-control-label" for="widowed">Widowed</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="total_experience">Date of birth</label>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <select id="" class="form-control">
+                                        <option selected="">Select Date</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select id="" class="form-control">
+                                        <option selected="">Select year</option>
+                                        <option>2005</option>
+                                        <option>2004</option>
+                                        <option>2003</option>
+                                        <option>2001</option>
+                                        <option>2000</option>
+                                        <option>1999</option>
+                                        <option>1998</option>
+                                        <option>1997</option>
+                                        <option>1996</option>
+                                        <option>1995</option>
+                                        <option>1994</option>
+                                        <option>1993</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select id="" class="form-control">
+                                        <option selected="">Select month</option>
+                                        <option>January</option>
+                                        <option>February</option>
+                                        <option>March</option>
+                                        <option>April</option>
+                                        <option>May</option>
+                                        <option>June</option>
+                                        <option value="">July</option>
+                                        <option value="">August</option>
+                                        <option value="">September</option>
+                                        <option value="">October</option>
+                                        <option value="">November</option>
+                                        <option value="">December</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Category</label>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="general" name="caste_category" checked="" required="">
+                                        <label class="custom-control-label" for="general">General</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="scheduled_caste" name="caste_category" required="">
+                                        <label class="custom-control-label" for="scheduled_caste">Scheduled Caste (SC)</label>
+                                    </div>
+                                </div>
+                                 <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="scheduled_tribe" name="caste_category" required="">
+                                        <label class="custom-control-label" for="scheduled_tribe">Scheduled Tribe (ST)</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="obc_creamy" name="caste_category" required="">
+                                        <label class="custom-control-label" for="obc_creamy">OBC - Creamy</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="obc_non_creamy" name="caste_category" required="">
+                                        <label class="custom-control-label" for="obc_non_creamy">OBC - Non creamy</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="other_caste" name="caste_category" required="">
+                                        <label class="custom-control-label" for="other_caste">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Permanent address</label>
+                            <input type="text" class="form-control" id="" value="" placeholder="Enter your permanent address">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Hometown</label>
+                            <input type="text" class="form-control" id="" value="" placeholder="Enter your hometown">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text" class="form-control" id="" value="" placeholder="Enter city pincode">
+                        </div>
+
+                        <h3>Language proficiency</h3>
+                        <h6>Strengthen your resume by letting recruiters know you can communicate in multiple languages</h6>
+
+
+                        <div class="form-group">
+                            
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="Language">Language</label>
+                                    <select id="" class="form-control">
+                                        <option selected="">Select Language</option>
+                                        <option>Hindi</option>
+                                        <option>English</option>
+                                        <option>Tamil</option>
+                                        <option>Bengali</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Proficiency">Proficiency</label>
+                                    <select id="" class="form-control">
+                                        <option selected="">Select Proficiency</option>
+                                        <option>Beginner</option>
+                                        <option>Proficient</option>
+                                        <option>Expert</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row mt-2">
+                                <div class="col-md-3">
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2 mb-4 cursor-pointer">
+                                        <input type="checkbox" class="custom-control-input" id="proficiency_read" checked>
+                                        <label class="custom-control-label" for="proficiency_read">Read</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2 mb-4 cursor-pointer">
+                                        <input type="checkbox" class="custom-control-input" id="proficiency_write" checked>
+                                        <label class="custom-control-label" for="proficiency_write">Write</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2 mb-4 cursor-pointer">
+                                        <input type="checkbox" class="custom-control-input" id="proficiency_speak" checked>
+                                        <label class="custom-control-label" for="proficiency_speak">Speak</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <span class="text-primary font-bold cursor-pointer mt-1 d-inline-block">Delete</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div>
+                            <span class="text-primary font-bold cursor-pointer">Add another language</span>
+                        </div>
+
+                        
+
+                        <div class="modal-footer">
+                            <button type="button" class="button button-contactForm boxed-btn"
+                                data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn">Update</button>
+                        </div>
+                        </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal education -->
+    <div class="modal fade" id="add_education">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Education</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+
+                        <div class="form-group">
+                            <label for="total_experience">Education</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">Select education</option>
+                                <option value="">Doctorate/PhD</option>
+                                <option value="">Master/Post-Graduation</option>
+                                <option value="">Graduation/Diploma</option>
+                                <option value="">12th</option>
+                                <option value="">10th</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>University/Institute</label>
+                            <input type="text" class="form-control" id="" value="" placeholder="Enter University/Institute">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_experience">Course</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">Select Course</option>
+                                <option value="">MBA/PGDM</option>
+                                <option value="">M.Tech</option>
+                                <option value="">MS/M.Sc(Science)</option>
+                                <option value="" selected>MCA</option>
+                                <option value="">M.Com</option>
+                                <option value="">PD Deploma</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_experience">Specialization</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">Select Specialization</option>
+                                <option value="">Computers</option>
+                                <option value="">AI and ML</option>
+                                <option value="">Other Specialization</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Course type</label>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="full_time" name="course_type" checked="" required="">
+                                        <label class="custom-control-label" for="full_time">Full Time</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="part_time" name="course_type"  required="">
+                                        <label class="custom-control-label" for="part_time">Part Time</label>
+                                    </div>
+                                </div>
+                                 <div class="col-md-4">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="correspondence_learning" name="course_type" required="">
+                                        <label class="custom-control-label" for="correspondence_learning">Correspondence / Distance learning</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_experience">Course duration</label>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <select id="" class="form-control">
+                                        <option selected="">Starting year</option>
+                                        <option>2026 Year</option>
+                                        <option>2025 Year</option>
+                                        <option>2024 Years</option>
+                                        <option>2023 Years</option>
+                                        <option>2022 Years</option>
+                                        <option>2021 Years</option>
+                                        <option>2020 Year</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select id="" class="form-control">
+                                        <option selected="">Ending year</option>
+                                        <option>2026 Year</option>
+                                        <option>2025 Year</option>
+                                        <option>2024 Years</option>
+                                        <option>2023 Years</option>
+                                        <option>2022 Years</option>
+                                        <option>2021 Years</option>
+                                        <option>2020 Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_experience">Grading system</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">Select Grading system</option>
+                                <option value="">Scale 10 Grading system</option>
+                                <option value="">Scale 4 Grading system</option>
+                                <option value="">% Marks of 100 Maximum</option>
+                                <option value="">Course requires a Pass</option>
+                            </select>
+                        </div>
+
+
+                        <div class="custom-control custom-checkbox my-1 mr-sm-2 mb-4 cursor-pointer">
+                            <input type="checkbox" class="custom-control-input" id="make_as_primary">
+                            <label class="custom-control-label" for="make_as_primary">Make this as my primary master's</label>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="button button-contactForm boxed-btn"
+                                data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn">Update</button>
+                        </div>
+                        </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal work experience -->
+    <div class="modal fade" id="add_work_exp">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Work Experience</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                    <div class="form-group">
+                            <label for="work_status" class="mb-0">Is this your current employment?</label>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="cur_emp_yes" name="current_employment" required="">
+                                        <label class="custom-control-label" for="cur_emp_yes">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="custom-control custom-radio mb-3">
+                                        <input type="radio" class="custom-control-input" id="cur_emp_no" name="current_employment" checked="" required="">
+                                        <label class="custom-control-label" for="cur_emp_no">no</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="work_status" class="mb-0">Employment type</label>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="full_time" name="type_employment" required="">
+                                        <label class="custom-control-label" for="full_time">Full Time</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="custom-control custom-radio mb-3">
+                                        <input type="radio" class="custom-control-input" id="internship" name="type_employment" checked="" required="">
+                                        <label class="custom-control-label" for="internship">Internship</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_experience">Total experience</label>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <select id="" class="form-control">
+                                        <option selected="">Select year</option>
+                                        <option>0 Year</option>
+                                        <option>1 Year</option>
+                                        <option>2 Years</option>
+                                        <option>3 Years</option>
+                                        <option>4 Years</option>
+                                        <option>5 Years</option>
+                                        <option>0 Year</option>
+                                        <option>1 Year</option>
+                                        <option>2 Years</option>
+                                        <option>3 Years</option>
+                                        <option>4 Years</option>
+                                        <option>5 Years</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select id="" class="form-control">
+                                        <option selected="">Select month</option>
+                                        <option>0 month</option>
+                                        <option>1 month</option>
+                                        <option>2 months</option>
+                                        <option>3 months</option>
+                                        <option>4 months</option>
+                                        <option>5 months</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="form-group">
+                            <label >Current company name</label>
+                            <input type="text" class="form-control" id="" value="" placeholder="Type your organization">
+                        </div>
+
+                        <div class="form-group">
+                            <label >Current job title</label>
+                            <input type="text" class="form-control" id="" value="" placeholder="Type your designation">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_experience">Joining Date</label>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <select id="" class="form-control">
+                                        <option selected="">Select year</option>
+                                        <option>2026 Year</option>
+                                        <option>2025 Year</option>
+                                        <option>2024 Years</option>
+                                        <option>2023 Years</option>
+                                        <option>2022 Years</option>
+                                        <option>2021 Years</option>
+                                        <option>2020 Year</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select id="" class="form-control">
+                                        <option selected="">Select month</option>
+                                        <option>January</option>
+                                        <option>February</option>
+                                        <option>March</option>
+                                        <option>April</option>
+                                        <option>May</option>
+                                        <option>June</option>
+                                        <option value="">July</option>
+                                        <option value="">August</option>
+                                        <option value="">September</option>
+                                        <option value="">October</option>
+                                        <option value="">November</option>
+                                        <option value="">December</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Current salary</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <select id="" class="form-control outline">
+                                        <option selected="">₹</option>
+                                        <option>$</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="form-control" id="" value="" placeholder="Eg. 4,50,000">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label >Used Skills</label>
+                            <input type="text" class="form-control" id="" value="" placeholder="Add skills">
+                        </div>
+
+                        <div class="form-group">
+                            <label >Job Discription</label>
+                            <textarea name="" id="" class="form-control" placeholder="Type here..." style="height: 135px; resize: none;"></textarea>
+                        </div>
+
+                         <div class="form-group">
+                            <label for="total_experience">Notice period</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">15 Day or less</option>
+                                <option value="">1 Month</option>
+                                <option value="">2 Months</option>
+                                <option value="">3 Months</option>
+                                <option value="">More than 3 Months</option>
+                                <option value="">Serving Notice period</option>
+                            </select>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="button button-contactForm boxed-btn"
+                                data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn">Update</button>
+                        </div>
+                        </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal skills -->
+    <div class="modal fade" id="tech_skills">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Skills</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                    <div>
+                        <span class="chip text-white active mb-1">React Js <svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg></span>
+                        <span class="chip text-white active mb-1e" >Next Js<svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg></span>
+                        <span class="chip text-white active mb-1" >Context API<svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg></span>
+                        <span class="chip text-white active mb-1">Rest API integration<svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg></span>
+
+                            <span class="chip text-white active mb-1">React Js <svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg></span>
+                        <span class="chip text-white active mb-1e" >Next Js<svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg></span>
+                        <span class="chip text-white active mb-1" >Context API<svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg></span>
+                        <span class="chip text-white active mb-1">Rest API integration<svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 384 512">
+                                <path
+                                    d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z" />
+                            </svg></span>
+                            
+
+                    </div>
+
+                    <div class="form-group mt-4">
+                            <label >Add Skills</label>
+                            <input type="text" class="form-control" id="" value="" placeholder="Add skills">
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <label class="mb-1">Or you can select from the suggested set of skills</label>
+                            <div>
+                                <span class="chip mb-1">HTML <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"/></svg></span>
+                                <span class="chip mb-1">CSS <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"/></svg></span>
+                                <span class="chip mb-1">npm <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"/></svg></span>
+                                <span class="chip mb-1">JavaScript <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"/></svg></span>
+                                <span class="chip mb-1">Jquery <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"/></svg></span>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="button button-contactForm boxed-btn"
+                                data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn">Update</button>
+                        </div>
+                        </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+     
+
+
+
+
     <!-- JS here -->
 
     <!-- All JS Custom Plugins Link Here here -->
@@ -817,7 +1784,7 @@
 
     <!-- Scrollup, nice-select, sticky -->
     <script src="./job-portal_files/jquery.scrollUp.min.js.download"></script>
-    <script src="./job-portal_files/jquery.nice-select.min.js.download"></script>
+    <!-- <script src="./job-portal_files/jquery.nice-select.min.js.download"></script> -->
     <script src="./job-portal_files/jquery.sticky.js.download"></script>
 
     <!-- contact js -->
