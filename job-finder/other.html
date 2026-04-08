@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Resume</title>
+  <title>Resume</title>
 
   <!-- Bootstrap 4 -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -43,6 +43,19 @@
     .btn-custom {
       border-radius: 20px;
     }
+
+
+    .resumeUpload .resumeName h4{
+      margin-bottom: 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .resumeUpload .resumeName p{
+      font-size: 12px;
+    }
+    .resumeUpload .resumeIcons svg{
+      fill:#007bff;
+    }
   </style>
 </head>
 
@@ -50,94 +63,37 @@
 
 <div class="container my-4">
 
-  <!-- Header -->
-  <div class="header d-flex justify-content-between align-items-center">
-    <div class="d-flex align-items-center">
-      <img src="user.webp" class="profile-img mr-3">
-      <div>
-        <h4 class="mb-0">David Jhon Warner</h4>
-        <small>Web Designer</small>
-      </div>
-    </div>
-
-    <div>
-      <button class="btn btn-outline-light btn-custom">Download CV</button>
-    </div>
-  </div>
-
   <div class="row mt-4">
-
-    <!-- Left Side -->
-    <div class="col-md-8">
-
-      <div class="card-box shadow-sm">
-        <h5 class="section-title">Learn About Me</h5>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-
-        <div class="row">
-          <div class="col-md-4">🎓 Education: BSC</div>
-          <div class="col-md-4">🎂 Age: 29</div>
-          <div class="col-md-4">💰 Salary: $250-$320</div>
-        </div>
-      </div>
-
-      <!-- Education -->
-      <div class="card-box shadow-sm">
-        <h5 class="section-title">Education</h5>
-
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <h6>BSC Engineering</h6>
-            <small>Oxford University</small>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <h6>Diploma Computer</h6>
-            <small>USA Polytechnic</small>
-          </div>
-        </div>
-      </div>
-
-      <!-- Experience -->
-      <div class="card-box shadow-sm">
-        <h5 class="section-title">Work Experience</h5>
-
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <h6>Senior IT Consultant</h6>
-            <small>Print Design LTD</small>
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <h6>Web Developer</h6>
-            <small>Fashion Stock</small>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Right Side -->
     <div class="col-md-4">
 
       <div class="card-box shadow-sm">
-        <h5 class="section-title">Additional Info</h5>
-
-        <p><strong>Name:</strong> David Warner</p>
-        <p><strong>Age:</strong> 30</p>
-        <p><strong>Gender:</strong> Male</p>
-        <p><strong>Email:</strong> john@email.com</p>
-        <p><strong>Phone:</strong> +91 9876543210</p>
-      </div>
-
-      <div class="card-box shadow-sm">
-        <h5 class="section-title">Contact</h5>
-        <p>📞 +880 123 456 78</p>
-        <p>📧 support@gmail.com</p>
-        <p>📍 USA</p>
+        <h5 class="section-title"> Info</h5>
+        <h5 class="section-title"> Info</h5>
       </div>
 
     </div>
+    <div class="col-md-8">
+      <div class="card-box shadow-sm ">
+        <h5 class="section-title mb-4">Resume</h5>
+        <div class="resumeUpload d-flex justify-content-between align-items-center">
+          <div class="resumeName">
+          <h4>Lalit-Thakur.pdf</h4>
+          <p class="text-secondary mb-0">Uploaded on Mar 30, 2026</p>
+        </div>
+        <div class="resumeIcons">
+          <button type="button" class="btn btn-outline-primary">Update Resume</button>
+          <button type="button" class="btn" style="background-color: #f7f7f9;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512"><path d="M256 464a208 208 0 1 1 0-416 208 208 0 1 1 0 416zM256 0a256 256 0 1 0 0 512 256 256 0 1 0 0-512zM244.7 387.3c6.2 6.2 16.4 6.2 22.6 0l104-104c4.6-4.6 5.9-11.5 3.5-17.4S366.5 256 360 256l-72 0 0-104c0-13.3-10.7-24-24-24l-16 0c-13.3 0-24 10.7-24 24l0 104-72 0c-6.5 0-12.3 3.9-14.8 9.9s-1.1 12.9 3.5 17.4l104 104z"/></svg>
+          </button>
+          <button type="button" class="btn " style="background-color: #f7f7f9;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512"><path d="M166.2-16c-13.3 0-25.3 8.3-30 20.8L120 48 24 48C10.7 48 0 58.7 0 72S10.7 96 24 96l400 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-96 0-16.2-43.2C307.1-7.7 295.2-16 281.8-16L166.2-16zM32 144l0 304c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-304-48 0 0 304c0 8.8-7.2 16-16 16L96 464c-8.8 0-16-7.2-16-16l0-304-48 0zm160 72c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 176c0 13.3 10.7 24 24 24s24-10.7 24-24l0-176zm112 0c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 176c0 13.3 10.7 24 24 24s24-10.7 24-24l0-176z"/></svg>
+          </button>
+        </div>
+        </div>
+      </div>
+
+    </div>
+    
 
   </div>
 
